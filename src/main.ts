@@ -6,17 +6,29 @@ type Student = {
     grades: (number | string | undefined)[];
 };
 
-// Schritt 2: Funktion zur Ausgabe von Studentendaten
+// Schritt 2: Funktion zur Ausgabe von Studentendaten (Service)
 function printStudent(student: Student) {
     console.log("============================================================");
 
-    const { firstName, lastName, age, grades } = student;
+    let { firstName, lastName, age, grades } = student;
     console.log(`====> ${firstName} ${lastName} // Age:(${age})`);
     console.log("----------------------");
     console.log("====> Noten:");
-    console.log(grades.map((grade) => (grade === undefined ? "*" : grade)).join(","));
-    console.log("============================================================");
+    console.log(grades.map((grade) => (grade === undefined? "*" : grade)).join(","));
+
+    // Schritt 5: Berechnung des Notendurchschnitts
+    let filteredGrades = grades.filter((grade) => typeof grade === "number");
+    if (filteredGrades.length > 0) {
+        let sum = filteredGrades.reduce((acc, curr) => acc + Number(curr), 0);
+        let average = sum / filteredGrades.length;
+        console.log(`====> Notendurchschnitt: ${average.toFixed(1)}`);
+    } else {
+        console.log("====> Notendurchschnitt: Keine bewerteten Noten.");
+    }
+
+    console.log("======================================================");
 }
+
 
 // Schritt 3: Beispiel-Studenten erstellen
 let student1: Student = {
@@ -46,6 +58,7 @@ function printStudentList(students: Student[]) {
         printStudent(student);
     });
 }
+
 
 // Beispiel: Liste der Studenten ausgeben
 let studentList: Student[] = [student1, student2, student3];
