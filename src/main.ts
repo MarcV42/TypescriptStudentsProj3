@@ -52,6 +52,13 @@ let student3: Student = {
     grades: ["A", 2,undefined,3,1,"B",undefined,5],
 };
 
+let student4: Student = {
+    firstName: "Zoe",
+    lastName: "Zylinder",
+    age: 25,
+    grades: ["A", 2,1,3,1,"C",undefined,3,2]
+};
+
 // Schritt 4: Funktion zur Ausgabe einer Liste von Studenten
 function printStudentList(students: Student[]) {
     students.forEach((student) => {
@@ -61,5 +68,6 @@ function printStudentList(students: Student[]) {
 
 
 // Beispiel: Liste der Studenten ausgeben
-let studentList: Student[] = [student1, student2, student3];
+let studentList: Student[] = [student1, student2, student3, student4];
 printStudentList(studentList);
+
